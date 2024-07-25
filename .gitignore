@@ -1,0 +1,6 @@
+/env*
+/old/
+*.pyc
+*.csv
+*.tsv
+results*
