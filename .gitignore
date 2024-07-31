@@ -4,3 +4,5 @@
 *.csv
 *.tsv
 results*
+checkpoints
+models*/
