@@ -250,7 +250,7 @@ def evaluate(y_true, y_pred):
     print(conf_matrix)
     
     # Save results
-    ConfusionMatrixDisplay(conf_matrix).plot().figure_.savefig(f"{results_path}.png")
+    ConfusionMatrixDisplay(conf_matrix).plot().figure_.savefig(f"{results_path}.pdf")
     with open(f"{results_path}.txt", "w") as f:
         json.dump(results, f, ensure_ascii=False)
 
