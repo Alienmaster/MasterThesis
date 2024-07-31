@@ -109,6 +109,6 @@ cm = confusion_matrix(y_true = references, y_pred = predictions_calc, labels=[0,
 # Save results
 Path(rq1_results_path).mkdir(parents=True, exist_ok=True)
 filename = rq1_results_path + f"{model_name}_{dataset}_{split}".replace("/", "_")
-cm_display = ConfusionMatrixDisplay(cm).plot().figure_.savefig(f"{filename}.png")
-with open(f"{rq1_results_path}{filename}.txt", "w") as f:
-    f.write(json.dumps(results, ensure_ascii=False))
+cm_display = ConfusionMatrixDisplay(cm).plot().figure_.savefig(f"{filename}.pdf")
+with open(f"{filename}.txt", "w") as f:
+    json.dump(results, f, ensure_ascii=False)
