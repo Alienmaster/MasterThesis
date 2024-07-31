@@ -22,11 +22,10 @@ text_ds = "text"
 rq1_results_path = "results_rq1/"
 
 # Choose dataset
-# dataset, split, dataset_loaded = germeval("test_syn")
+dataset, split, dataset_loaded = germeval("test_syn")
 # dataset, split, dataset_loaded = omp()
-dataset, split, dataset_loaded = schmidt("test")
+# dataset, split, dataset_loaded = schmidt("test")
 # dataset, split, dataset_loaded = wikipedia()
-
 
 def guhr(ds):
     from germansentiment import SentimentModel
@@ -62,7 +61,6 @@ if model_name == "lxyuan/distilbert-base-multilingual-cased-sentiments-student":
     predictions = lxyuan(dataset_loaded)
 elif model_name == "oliverguhr/german-sentiment-bert":
     predictions = guhr(dataset_loaded)
-
 
 results = {"metrics": {}, "details": []}
 label2id = {"negative": 0, "positive": 1, "neutral": 2}
