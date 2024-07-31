@@ -38,7 +38,9 @@ Not every model runs on every dataset on a nvidia A100 80G
 - Evaluate the results
 
 #### Guhr / Lxyuan
--- TODO --
+- `rq1_ml.py` - Select the model and the dataset and run Lxyuan or Guhr with preprocessing
+
+Results are stored in `results_rq1`
 
 #### Large Language Models
 - `rq1_llms.sh` - Runs the experiments with different models on different datasets
