@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import sys
+from time import time
 from datasets import ClassLabel
 from evaluate import load
 from setfit import SetFitModel, Trainer, TrainingArguments
@@ -9,10 +10,14 @@ from thesis_datasets import germeval, omp, schmidt
 size = int(sys.argv[1])
 run = int(sys.argv[2])
 
+# Start
+start = time()
+
+# Model
 model_name = "intfloat/multilingual-e5-large-instruct"
+
 # Results path
 rq23_results_path = "results_rq23/"
-Path(rq23_results_path).mkdir(parents=True, exist_ok=True)
 
 def add_prompt(datapoint):
     prompt = "Instruct: Classify the sentiment of a given text as either positive, negative, or neutral.\n Query:"
@@ -83,11 +88,13 @@ trainer.train()
 # Evaluate
 metrics = trainer.evaluate(test_dataset)
 
+# End
+end = time()
+training_time = end-start
+metrics["duration"] = training_time
+
 # Save metrics
-rq23_results_path
+Path(rq23_results_path).mkdir(parents=True, exist_ok=True)
 filename = rq23_results_path + f"{model_name}_{dataset_name}_{size}_{run}".replace("/", "_")
 with open(filename, "w") as f:
-    f.write(json.dumps(metrics))
-
-print(f"{size=}")
-print(f"{metrics=}")
+    json.dump(metrics, f, ensure_ascii=False)
